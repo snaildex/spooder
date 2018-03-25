@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<title>Spooder</title>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+  <link rel="icon" href="/icon.ico" type="image/x-icon">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="inputHelpers.js"></script>
+  <script src="parseQuery.js"></script>
+</head>
+<body>
+
+<div class="w3-container w3-display-topmiddle">
+  <div class="w3-card-4" style="width: 1024px">
+    
+    <h1 class="w3-container w3-blue-gray w3-center">
+      <img src="icon.ico" alt="logo" style="width:32px;height:32px;image-rendering:pixelated;">
+      Spooder
+      <div class="w3-large">a webpage parser</div>
+    </h1>
+
+    <h2 class="w3-container w3-text-blue-gray"> Enter keywords: </h2>
+    <div class="w3-container">
+      <input class="keywordInput w3-input w3-border w3-round-large w3-margin-bottom w3-light-gray" type="text">
+      <input class="keywordInput w3-input w3-border w3-round-large w3-section w3-light-gray" type="text">
+      <button id="addKeywordBtn" class="w3-blue-gray w3-round-large w3-button w3-block" onclick=AddKeywordField()>+</button>
+    </div>
+    
+    <h2 class="w3-container w3-text-blue-gray"> Enter URL: </h2>
+    <div class="w3-container">
+        <div class="w3-cell-row">
+          <div class="w3-cell">
+            <input id="urlInput" class="w3-input w3-border w3-round-large w3-margin-bottom w3-light-gray" type="text" onchange=CheckURL()>
+          </div>
+          <i id="urlOK" class="fa fa-check w3-cell-middle w3-margin-left w3-text-green" style="font-size:24px;display:none;"></i>
+          <i id="urlError" class="fa fa-close w3-cell-middle w3-margin-left w3-text-red" style="font-size:24px;display:none;"></i>
+          <i id="urlLoader" class="fa fa-spinner fa-pulse w3-cell-middle w3-margin-left w3-text-blue-gray" style="font-size:24px;display:none;"></i>
+        </div>
+        <button class="w3-blue-gray w3-round-large w3-button" onclick=ParseQuery()>Submit</button>
+    </div>
+    
+    <h2 class="w3-container w3-text-blue-gray "> Result: </h2>
+    <div class="w3-container">
+      <div id="parseLoader" class="w3-panel w3-center" style="display:none;">
+        <i class="fa fa-spinner fa-pulse w3-text-blue-gray" style="font-size:24px;"></i>
+      </div>
+      <div id="result">
+        <div class="w3-panel w3-light-gray w3-leftbar w3-border-blue-gray">
+          <p>No data yet</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+</html>
