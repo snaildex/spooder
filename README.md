@@ -1,0 +1,2 @@
+# spooder
+Requires cURL installed
