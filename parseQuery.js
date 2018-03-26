@@ -21,12 +21,16 @@ function ParseQuery()
     keywords = keywords.slice(0, -1);
     $query="ParseUrl.php?url="+$("#urlInput").val()+"&keys="+keywords;
     
-    $("#result").empty();
+    /*$("#result").empty();
 	$("#parseLoader").show();
     $.get($query, function(data, status)
 	{
 		$("#parseLoader").hide();
 		$("#result").append(data);
     });
+	*/
+
+	//window.location.replace($query);
+	window.location.href = $query;
 	}
 }
