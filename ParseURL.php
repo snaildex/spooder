@@ -8,17 +8,18 @@ $ch = curl_init();
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_URL, $url);
 $content = curl_exec ($ch);
-$iter = 0;
-$new_array = array();
-$string_navigation = '<ul style="position: fixed; width:200px; background: gray; top: 0; left: 0;">';
+$insertions = array();
+
+foreach($keywords as $key)
+  $insertions[] = "<b class='popavs_$key' style='color:yellow; background-color:blue'>$key</b>";
+
+$pq = phpQuery::newDocument(str_replace($keywords, $insertions, $content));
+$pq->find("script, link")->remove();
+
 foreach($keywords as $key)
 {
-  $string_navigation .= sprintf('<li><a href="#">%s</a></li>', $key);
-  $new_array[] = "<b class='popavs' data-key='$key' style='color:yellow; background-color:blue'>$key</b>";
-
+  $num = 0;
+  $pq->find(".popavs_$key")->each(function($obj) use($key, $num){ pq($obj)->attr('id',$key."_".$num); $num++; });
 }
-$string_navigation .= "</ul>";
-$content = str_replace($keywords, $new_array, $content) . $string_navigation;
-$pq = phpQuery::newDocument($content);
-$pq->find("script, link")->remove();
+
 echo($pq->html());
