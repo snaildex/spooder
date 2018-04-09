@@ -1,4 +1,12 @@
 
+function resizeIframe(obj) 
+{
+	var body = obj.contentWindow.document.body,
+    html = obj.contentWindow.document.documentElement;
+	var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+    obj.parentElement.style.height = height;
+}
+
 function ParseQuery()
 {
 	var keywords="";
