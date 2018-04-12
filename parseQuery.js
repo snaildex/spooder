@@ -1,29 +1,18 @@
 
-function resizeIframe(obj) 
-{
-	var body = obj.contentWindow.document.body,
-    html = obj.contentWindow.document.documentElement;
-	var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
-    obj.parentElement.style.height = height;
-}
+$(document).ready(function () {
+        $('#result').on('load', function () {
+            $('#parseLoader').hide();
+        });
+    });
 
 function ParseQuery()
 {
-	var keywords="";
-    var keys=[];
-    $(".keywordInput").each(function(input){
-    	if($(this).val())
-    	{
-    		keywords=keywords.concat($(this).val(),"$");
-    		keys.push($(this).val());
-    	}
-    });
+	var keywords=$(".keywordInput").val().replace(/\s/g,'');
     if(keywords)
     {
-    
-    keywords = keywords.slice(0, -1);
+    $("#result").attr('src',"about:blank");
+    $("#parseLoader").show();
     $query="ParseUrl.php?url="+$("#urlInput").val()+"&keys="+keywords;
    	$("#result").attr('src',$query);
-	
 	}
 }
